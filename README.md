@@ -18,11 +18,15 @@ I built this project to understand how AI applications can answer questions from
 * Return source chunks used for each answer
 * Reset indexed documents during testing
 * Fallback retrieval mode when LLM generation is unavailable or quota-limited
+* React frontend for PDF upload, question answering, source display, and reset flow
+* CORS-enabled frontend-backend integration for local development
 
 ## Tech Stack
 
 * Python
 * FastAPI
+* React
+* Vite
 * Uvicorn
 * ChromaDB
 * sentence-transformers
@@ -122,21 +126,29 @@ http://127.0.0.1:8000/docs
 
 ## Screenshots
 
-### Health Check
+### Frontend Upload Flow
+
+![Frontend Upload](screenshots/frontend-upload-success.png)
+
+### Frontend Source-Grounded Answer
+
+![Frontend Answer](screenshots/frontend-answer-with-sources.png)
+
+### API Health Check
 
 ![Health Check](screenshots/health-check-success.png)
 
-### PDF Upload
+### API PDF Upload
 
 ![PDF Upload](screenshots/upload-success.png)
 
-### Semantic Search
+### API Semantic Search
 
 ![Semantic Search](screenshots/semantic-search-sip.png)
 
-### Source-Grounded AI Answer
+### API Reset Vector Database
 
-![AI Answer](screenshots/ai-answer-with-sources.png)
+![Reset Vector Database](screenshots/reset-vector-database.png)
 
 ## What Went Wrong
 
@@ -165,10 +177,11 @@ While building the project, I ran into a few practical issues:
 
 ## Future Improvements
 
-* Add React frontend
+* Add a React frontend for PDF upload and question answering
 * Improve chunking using paragraph-aware or sentence-aware splitting
 * Add authentication for uploaded documents
-* Add Dockerfile and Docker Compose
+* Add Dockerfile and Docker Compose after local Docker testing
+* Deploy backend and frontend with environment-based configuration
 * Add Prometheus metrics for request latency and error count
 * Add evaluation dataset for testing answer quality
 * Add support for multiple LLM providers

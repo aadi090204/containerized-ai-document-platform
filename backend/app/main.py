@@ -2,7 +2,7 @@ import os
 import shutil
 
 from fastapi import FastAPI, UploadFile, File, HTTPException
-
+from fastapi.middleware.cors import CORSMiddleware
 from app.config import UPLOAD_DIR
 from app.pdf_loader import extract_text_from_pdf
 from app.text_splitter import split_text
@@ -17,6 +17,16 @@ app = FastAPI(
     version="1.0.0"
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/health")
 def health_check():
