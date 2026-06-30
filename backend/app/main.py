@@ -1,6 +1,7 @@
 import os
 import shutil
 
+from prometheus_fastapi_instrumentator import Instrumentator
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import UPLOAD_DIR
@@ -16,6 +17,8 @@ app = FastAPI(
     description="A RAG-based financial document assistant with source-grounded answers.",
     version="1.0.0"
 )
+
+Instrumentator().instrument(app).expose(app)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[

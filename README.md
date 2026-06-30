@@ -1,5 +1,5 @@
-# 🚀 Containerized AI Document Platform
-### Cloud-Native RAG Financial Assistant with FastAPI, React, Docker, ChromaDB, Gemini and GitHub Actions CI/CD
+# 🚀 Finance RAG Advisor
+### Production-Inspired Retrieval-Augmented Generation (RAG) Financial Assistant with FastAPI, React, ChromaDB, Gemini, Docker, Prometheus, Grafana and GitHub Actions CI/CD
 
 <div align="center">
 
@@ -7,6 +7,8 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![React](https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Prometheus](https://img.shields.io/badge/Prometheus-Monitoring-E6522C?style=for-the-badge&logo=prometheus&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-Observability-F46800?style=for-the-badge&logo=grafana&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI/CD-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_DB-5B21B6?style=for-the-badge)
 ![Gemini](https://img.shields.io/badge/Gemini-LLM-4285F4?style=for-the-badge&logo=google&logoColor=white)
@@ -17,99 +19,124 @@
 
 # 📌 Overview
 
-Containerized AI Document Platform is a cloud-native Retrieval-Augmented Generation (RAG) application that enables users to upload financial PDF documents, perform semantic search using vector embeddings, and generate source-grounded answers using Google's Gemini models.
+Finance RAG Advisor is a Retrieval-Augmented Generation (RAG) application that enables users to upload financial PDF documents, perform semantic retrieval using vector embeddings, and generate source-grounded responses using Google's Gemini models.
 
-The project follows modern cloud engineering practices by separating frontend and backend services into independent Docker containers, orchestrating them using Docker Compose, and automating validation using GitHub Actions CI/CD pipelines.
+The project was designed to explore how modern AI applications are engineered, containerized, monitored, and automated using production-inspired software engineering and DevOps practices.
 
 This project combines:
 
-- AI Engineering
-- Backend Development
+- Artificial Intelligence Engineering
+- Retrieval-Augmented Generation (RAG)
+- Vector Databases
+- Backend Engineering
+- Frontend Development
 - Containerization
 - CI/CD Automation
-- Cloud-Native Architecture
-- Semantic Search
-- Vector Databases
+- Monitoring and Observability
+- Cloud-Native Design Principles
 
 ---
 
 # 🎯 Why I Built This
 
-I built this project to understand how modern AI applications are designed, containerized, automated, and prepared for cloud deployment.
+I built this project to understand how modern AI systems move beyond simple prompts and become deployable, observable, and maintainable software systems.
 
 The primary goals were:
 
-- Build a practical Retrieval-Augmented Generation application
-- Learn vector databases and semantic search
-- Containerize a multi-service application using Docker
-- Implement CI/CD automation using GitHub Actions
-- Understand cloud-native application architecture
-- Practice production-style backend/frontend integration
-- Explore observability, deployment automation, and infrastructure concepts
+- Build a practical Retrieval-Augmented Generation system
+- Learn semantic search and vector databases
+- Work with LLM orchestration pipelines
+- Containerize multi-service applications
+- Implement CI/CD automation
+- Explore monitoring and observability
+- Understand production-style service architecture
+- Practice debugging distributed systems
 
 ---
 
 # ✨ Features
 
-### AI Features
+## AI Features
 
-- Upload finance-related PDF documents
-- Extract document text using pypdf
-- Split documents into retrievable chunks
-- Generate embeddings using sentence-transformers
-- Store vectors in ChromaDB
-- Perform semantic similarity search
-- Generate source-grounded answers using Gemini
-- Return source references for answer transparency
-- Fallback retrieval mode if LLM generation fails
+✅ Upload financial PDF documents
 
-### Cloud-Native Features
+✅ Extract PDF content using pypdf
 
-- Independent frontend and backend containers
-- Docker Compose orchestration
-- GitHub Actions CI/CD pipeline
-- Environment-based configuration
-- Persistent vector database volumes
-- Health check endpoints
-- Container restart policies
-- CORS-enabled service communication
+✅ Intelligent text chunking
+
+✅ Generate embeddings using Sentence Transformers
+
+✅ Store embeddings in ChromaDB
+
+✅ Perform semantic similarity search
+
+✅ Generate source-grounded answers using Gemini
+
+✅ Retrieval-only fallback mode when Gemini is unavailable
+
+✅ Display source chunks used for answer generation
 
 ---
 
-# ☁️ Why This Is Cloud-Native
+## DevOps Features
 
-This application follows several cloud-native engineering principles:
+✅ Dockerized frontend and backend
 
-| Cloud-Native Principle | Implementation |
+✅ Docker Compose orchestration
+
+✅ GitHub Actions CI pipeline
+
+✅ Health checks
+
+✅ Container restart policies
+
+✅ Environment-based configuration
+
+✅ Prometheus monitoring
+
+✅ Grafana dashboards
+
+✅ FastAPI instrumentation
+
+✅ Service observability
+
+---
+
+# ☁️ Cloud-Native Design Principles
+
+Although this project currently runs locally using Docker Compose, it follows several cloud-native design patterns:
+
+| Principle | Implementation |
 |---|---|
 | Containerization | Docker |
-| Service Separation | FastAPI + React |
-| Environment Configuration | .env files |
+| Service Separation | React + FastAPI |
+| Environment Configuration | .env |
 | Infrastructure Automation | Docker Compose |
-| CI/CD Automation | GitHub Actions |
-| Stateless Services | Backend containers |
-| Persistent Storage | ChromaDB volumes |
-| Health Monitoring | /health endpoint |
-| API-first Architecture | FastAPI |
+| API-first Design | FastAPI |
+| CI/CD | GitHub Actions |
+| Health Checks | /health |
+| Monitoring | Prometheus |
+| Observability | Grafana |
+| Persistent Storage | ChromaDB |
 
-The application is designed so it can later be deployed to:
+The architecture can be extended for deployment to:
 
-- Google Cloud Run
-- Google Kubernetes Engine
+- Kubernetes
 - AWS ECS
 - AWS EKS
+- Google Kubernetes Engine
 - Azure Container Apps
-- Kubernetes clusters
+- Google Cloud Run
 
 ---
 
-# 🏗 Architecture
+# 🏗 System Architecture
 
 ```text
                     GitHub Repository
                             │
                             ▼
-                    GitHub Actions CI/CD
+                    GitHub Actions CI
                             │
                             ▼
                      Docker Build
@@ -117,51 +144,84 @@ The application is designed so it can later be deployed to:
                             ▼
                     Docker Compose
                             │
-          ┌─────────────────┴─────────────────┐
-          ▼                                   ▼
-     React Frontend                    FastAPI Backend
-          │                                   │
-          ▼                                   ▼
-      User Interface                  RAG Pipeline
-                                              │
-                                              ▼
-                                       ChromaDB
-                                              │
-                                              ▼
-                                  Sentence Transformers
-                                              │
-                                              ▼
-                                          Gemini
+         ┌──────────────────┴──────────────────┐
+         ▼                                     ▼
+    React Frontend                      FastAPI Backend
+                                                 │
+                                                 ▼
+                                          RAG Pipeline
+                                                 │
+                    ┌────────────────────────────┴──────────────────────┐
+                    ▼                                                   ▼
+             ChromaDB                                         Gemini API
+                    │
+                    ▼
+          Sentence Transformers
+                    │
+                    ▼
+             Vector Embeddings
 ```
 
 ---
 
-# 🧠 RAG Pipeline
+# 🧠 Retrieval-Augmented Generation Pipeline
 
 ```text
 PDF Upload
-    │
-    ▼
-Text Extraction
-    │
-    ▼
-Chunking
-    │
-    ▼
+     │
+     ▼
+PDF Extraction
+     │
+     ▼
+Text Chunking
+     │
+     ▼
 Embedding Generation
-    │
-    ▼
+     │
+     ▼
 ChromaDB Storage
-    │
-    ▼
+     │
+     ▼
 Semantic Retrieval
-    │
-    ▼
-Gemini Prompt
-    │
-    ▼
-Source Grounded Answer
+     │
+     ▼
+Prompt Construction
+     │
+     ▼
+Gemini Generation
+     │
+     ▼
+Source Grounded Response
 ```
+
+---
+
+# 📊 Monitoring Architecture
+
+```text
+FastAPI Application
+        │
+        ▼
+Prometheus Instrumentator
+        │
+        ▼
+/metrics endpoint
+        │
+        ▼
+Prometheus Server
+        │
+        ▼
+Grafana Dashboard
+```
+
+Metrics collected include:
+
+- API request count
+- Request latency
+- Endpoint response times
+- CPU utilization
+- Memory consumption
+- Service health status
 
 ---
 
@@ -172,25 +232,27 @@ Source Grounded Answer
 | Frontend | React, Vite |
 | Backend | FastAPI, Uvicorn |
 | AI Model | Gemini |
-| Embeddings | sentence-transformers |
+| Embeddings | Sentence Transformers |
 | Vector Database | ChromaDB |
 | PDF Processing | pypdf |
+| Monitoring | Prometheus |
+| Observability | Grafana |
 | Containerization | Docker |
 | Orchestration | Docker Compose |
 | CI/CD | GitHub Actions |
 | Environment Management | python-dotenv |
-| Programming Languages | Python, JavaScript |
+| Languages | Python, JavaScript |
 
 ---
 
 # 📁 Project Structure
 
 ```text
-containerized-ai-document-platform/
+Finance-rag-advisor/
 
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml
+│       └── ci.yml
 │
 ├── backend/
 │   ├── app/
@@ -198,35 +260,81 @@ containerized-ai-document-platform/
 │   │   ├── config.py
 │   │   ├── rag_pipeline.py
 │   │   ├── vector_store.py
-│   │   ├── text_splitter.py
 │   │   ├── pdf_loader.py
+│   │   ├── text_splitter.py
 │   │   └── schemas.py
 │   │
 │   ├── Dockerfile
-│   ├── requirements.txt
-│   └── .dockerignore
+│   └── requirements.txt
 │
 ├── frontend/
 │   ├── src/
-│   ├── Dockerfile
-│   ├── package.json
-│   └── vite.config.js
+│   └── Dockerfile
+│
+├── monitoring/
+│   ├── prometheus.yml
+│   └── grafana/
+│
+├── screenshots/
 │
 ├── docker-compose.yml
-├── README.md
-└── .gitignore
+└── README.md
 ```
 
 ---
 
-# 🐳 Running with Docker
+# 📸 Project Demonstration
+
+## Upload Financial Documents
+
+![Upload Success](screenshots/frontend-upload-success.png)
+
+---
+
+## Source Grounded Answer Generation
+
+![RAG Answer](screenshots/frontend-answer-with-sources.png)
+
+---
+
+## Semantic Search
+
+![Semantic Search](screenshots/semantic-search-sip.png)
+
+---
+
+## Dockerized Services
+
+![Docker Containers](screenshots/docker-containers.png)
+
+---
+
+## Prometheus Monitoring
+
+![Prometheus Targets](screenshots/prometheus-targets.png)
+
+---
+
+## Grafana Dashboard
+
+![Grafana Dashboard](screenshots/grafana-dashboard.png)
+
+---
+
+## GitHub Actions CI
+
+![GitHub Actions](screenshots/github-actions.png)
+
+---
+
+# 🐳 Running Locally
 
 Clone repository:
 
 ```bash
-git clone https://github.com/aadi090204/containerized-ai-document-platform.git
+git clone https://github.com/aadi090204/Finance-rag-advisor.git
 
-cd containerized-ai-document-platform
+cd Finance-rag-advisor
 ```
 
 Create environment file:
@@ -247,11 +355,15 @@ Build containers:
 docker compose build
 ```
 
-Start application:
+Start services:
 
 ```bash
-docker compose up
+docker compose up -d
 ```
+
+---
+
+# 🌐 Application URLs
 
 Frontend:
 
@@ -271,74 +383,109 @@ Swagger:
 http://localhost:8000/docs
 ```
 
+Prometheus:
+
+```text
+http://localhost:9090
+```
+
+Grafana:
+
+```text
+http://localhost:3001
+```
+
+Metrics:
+
+```text
+http://localhost:8000/metrics
+```
+
 ---
 
 # 🔌 API Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | /health | Health check |
-| POST | /upload | Upload PDF |
-| POST | /search | Semantic search |
-| POST | /ask | Ask question |
-| DELETE | /documents/reset | Reset vector database |
+| Method | Endpoint |
+|---|---|
+| GET | /health |
+| GET | /metrics |
+| POST | /upload |
+| POST | /ask |
+| DELETE | /documents/reset |
 
 ---
 
-# 🔄 CI/CD Pipeline
+# 🔄 GitHub Actions CI Pipeline
 
 The GitHub Actions pipeline automatically:
 
 - Checks out source code
 - Builds backend Docker image
 - Builds frontend Docker image
-- Validates Docker Compose configuration
-- Verifies container startup
-- Executes health checks
-- Detects build failures before deployment
+- Validates Docker Compose
+- Performs container startup checks
+- Executes health validation
+- Detects build failures early
+
+---
+
+# 🔧 Engineering Challenges Solved
+
+During development, several production-style issues were encountered and resolved:
+
+- Fixed UTF-16 encoded requirements.txt breaking Docker builds
+- Debugged unhealthy container health checks
+- Resolved long startup times caused by Sentence Transformer initialization
+- Implemented Prometheus FastAPI instrumentation
+- Configured Prometheus scraping
+- Built Grafana monitoring dashboards
+- Debugged Docker volume mounting issues
+- Implemented fallback retrieval mode when Gemini API is unavailable
+- Optimized container startup behavior
 
 ---
 
 # 📚 Key Learnings
 
-Through this project I learned:
+This project helped me learn:
 
-- Retrieval-Augmented Generation architecture
-- Vector databases and semantic search
+- Retrieval-Augmented Generation
+- Vector databases
+- Semantic search
 - Prompt engineering
-- FastAPI backend development
-- React frontend integration
+- FastAPI development
+- React integration
 - Docker containerization
 - Docker Compose orchestration
 - GitHub Actions CI/CD
-- Environment-based configuration
+- Prometheus monitoring
+- Grafana observability
+- Service health monitoring
+- Production debugging
 - Cloud-native application design
-- Service communication and observability
 
 ---
 
 # 🚀 Future Improvements
 
-- Deploy on Google Cloud Run
-- Deploy on Kubernetes
-- Add Prometheus metrics
-- Add Grafana dashboards
-- Add JWT authentication
-- Add multi-document support
-- Add document deletion
-- Add Redis caching
-- Add OpenTelemetry tracing
-- Add automated testing pipeline
+- Kubernetes deployment
+- Redis caching
+- JWT authentication
+- Multi-document retrieval
+- OpenTelemetry tracing
+- Automated testing pipeline
+- CI/CD deployment automation
+- Horizontal scaling
+- Object storage integration
 
 ---
 
 # 👨‍💻 Author
 
-**Adithya Anil**
+## Adithya Anil
 
-- AI Engineer
-- DevOps Engineer
-- Cloud-Native Enthusiast
+Software Engineer | AI Engineer | DevOps Engineer | Cloud-Native Enthusiast
 
 GitHub:
+
 https://github.com/aadi090204

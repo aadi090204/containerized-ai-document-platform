@@ -4,9 +4,25 @@ from sentence_transformers import SentenceTransformer
 from app.config import CHROMA_DB_DIR, COLLECTION_NAME
 
 
-embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+embedding_model = None
 
-client = chromadb.PersistentClient(path=CHROMA_DB_DIR)
+
+def get_embedding_model():
+    global embedding_model
+
+    if embedding_model is None:
+        print("Loading embedding model...")
+        embedding_model = SentenceTransformer(
+            "all-MiniLM-L6-v2"
+        )
+        print("Embedding model loaded.")
+
+    return embedding_model
+
+
+client = chromadb.PersistentClient(
+    path=CHROMA_DB_DIR
+)
 
 collection = client.get_or_create_collection(
     name=COLLECTION_NAME
@@ -14,7 +30,8 @@ collection = client.get_or_create_collection(
 
 
 def generate_embedding(text: str) -> list[float]:
-    embedding = embedding_model.encode(text)
+    model = get_embedding_model()
+    embedding = model.encode(text)
     return embedding.tolist()
 
 
@@ -47,7 +64,11 @@ def store_chunks(chunks: list[str], document_name: str) -> int:
     return len(chunks)
 
 
-def search_relevant_chunks(question: str, top_k: int = 4) -> list[dict]:
+def search_relevant_chunks(
+    question: str,
+    top_k: int = 4
+) -> list[dict]:
+
     question_embedding = generate_embedding(question)
 
     results = collection.query(
@@ -61,7 +82,11 @@ def search_relevant_chunks(question: str, top_k: int = 4) -> list[dict]:
     metadatas = results.get("metadatas", [[]])[0]
     distances = results.get("distances", [[]])[0]
 
-    for doc, metadata, distance in zip(documents, metadatas, distances):
+    for doc, metadata, distance in zip(
+        documents,
+        metadatas,
+        distances
+    ):
         relevant_chunks.append(
             {
                 "text": doc,
@@ -72,10 +97,13 @@ def search_relevant_chunks(question: str, top_k: int = 4) -> list[dict]:
 
     return relevant_chunks
 
+
 def reset_collection() -> str:
     global collection
 
-    client.delete_collection(name=COLLECTION_NAME)
+    client.delete_collection(
+        name=COLLECTION_NAME
+    )
 
     collection = client.get_or_create_collection(
         name=COLLECTION_NAME
