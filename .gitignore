@@ -2,9 +2,9 @@
 # Environment Variables
 # ======================================
 .env
+.env.production
 *.env
 **/.env
-
 # ======================================
 # Python Virtual Environments
 # ======================================
